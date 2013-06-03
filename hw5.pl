@@ -29,13 +29,16 @@ usage(P,T) :- where(C,P), when(C,T).
 conflict(X,Y) :- when(X,T), where(X,P), when(Y,T), when(Y,P), X\=Y.
 
 /*1d*/
-meet(X,Y) :- enroll(X,Z), when(Z,A), enroll(Y,W), when(W,B), X\=Y, A=:=B-1.
+meet(X,Y) :- enroll(X,Z), when(Z,T), enroll(Y,W), when(W,U), X\=Y, T=:=U-1.
 
 /* Exercise 2 */
 
+/*stuck for now*/
+rdup([],[]).
+flat([],[]).
 
 
-/*
+
 project([],[],[]).
 project([],[_],[_]).
 project(L1,[_],[_]).
@@ -45,4 +48,4 @@ project(L1,[_],[_],N).
 project(L1,L2,L3) :- N is 0, project(L1,L2,L3,N).
 project([X|L1],[L|L2],[L|L3],N) :- N=:=X-1, project(L1,L2,L3,N+1).
 project([L1],[L|L2],L3,N) :- project(L1,L2,L3,N+1).
-*/
+
