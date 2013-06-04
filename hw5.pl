@@ -29,7 +29,13 @@ usage(P,T) :- where(C,P), when(C,T).
 conflict(X,Y) :- when(X,T), where(X,P), when(Y,T), when(Y,P), X\=Y.
 
 /*1d*/
+/*
 meet(X,Y) :- enroll(X,Z), when(Z,T), enroll(Y,W), when(W,U), X\=Y, T=:=U-1.
+*/
+
+meet(A,B) :- enroll(A,C), enroll(B,C), A\=B.
+meet(A,B) :- enroll(A,C), enroll(B,D), where(C,P), where(D,P), when(C,T), when(D,U), (T is U+1; U is T0+1), A\=B.
+
 
 /* Exercise 2 */
 
