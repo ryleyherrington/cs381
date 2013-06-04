@@ -1,4 +1,4 @@
-
+/*Ryley Herrington*/
 /* Exercise 1 */
 when(275,10).
 when(261,12).
@@ -29,13 +29,6 @@ usage(P,T) :- where(C,P), when(C,T).
 conflict(X,Y) :- when(X,T), where(X,P), when(Y,T), when(Y,P), X\=Y.
 
 /*1d*/
-/*
-meet(X,Y) :- enroll(X,Z), when(Z,T), enroll(Y,W), when(W,U), X\=Y, T=:=U-1.
-
-meet(A,B) :- enroll(A,C), enroll(B,C), A\=B.
-meet(A,B) :- enroll(A,C), enroll(B,D), where(C,P), where(D,P), when(C,T), when(D,U), (T is U+1; U is T+1), A\=B.
-*/
-
 meet(A,B) :- enroll(A, X1), enroll(B, X2), where(X1, P), where(X2, P), when(X1, T1), when(X2, T2) , (T1 =:= T2 ; T1 =:= T2-1 ; T1-1 =:= T2) , A\=B.
 
 /* Exercise 2 */
@@ -46,12 +39,10 @@ rdup([],[]).
 rdup([X,X|Xs], Ys) :- rdup([X|Xs], Ys), !.
 rdup([X,X|Xs], [X|Ys]) :- rdup(Xs,Ys).
 
-
 /*2b*/
 flat([],[]).
 flat(X,[X]).
 flat([X|Xs], Z) :- flat(X,Y), flat(Xs,Ys), append(Y,Ys,Z).
-
 
 /*2c*/
 project([],[],[]).
