@@ -34,14 +34,22 @@ meet(X,Y) :- enroll(X,Z), when(Z,T), enroll(Y,W), when(W,U), X\=Y, T=:=U-1.
 */
 
 meet(A,B) :- enroll(A,C), enroll(B,C), A\=B.
-meet(A,B) :- enroll(A,C), enroll(B,D), where(C,P), where(D,P), when(C,T), when(D,U), (T is U+1; U is T0+1), A\=B.
+meet(A,B) :- enroll(A,C), enroll(B,D), where(C,P), where(D,P), when(C,T), when(D,U), (T is U+1; U is T+1), A\=B.
 
 
 /* Exercise 2 */
 
-/*stuck for now*/
+/*2a*/
 rdup([],[]).
+/*cut operator... http://boklm.eu/prolog/page_5.html*/
+rdup([X,X|Xs], Ys) :- rdup([X|Xs], Ys), !.
+rdup([X,X|Xs], [X|Ys]) :- rdup(Xs,Ys).
+
+
+/*2b*/
 flat([],[]).
+flat([X|L], F) :- flat(X, FX), flat(L,FL), append(FX,FL,F).
+flat(X,[X]).
 
 
 
